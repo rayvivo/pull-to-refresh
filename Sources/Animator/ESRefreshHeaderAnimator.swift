@@ -29,15 +29,15 @@ import QuartzCore
 import UIKit
 
 open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol, ESRefreshImpactProtocol {
-    open var pullToRefreshDescription = NSLocalizedString("Pull to refresh", comment: "") {
+    open var pullToRefreshDescription = "Pull to refresh".localized {
         didSet {
             if pullToRefreshDescription != oldValue {
                 titleLabel.text = pullToRefreshDescription;
             }
         }
     }
-    open var releaseToRefreshDescription = NSLocalizedString("Release to refresh", comment: "")
-    open var loadingDescription = NSLocalizedString("Loading...", comment: "")
+    open var releaseToRefreshDescription = "Release to refresh".localized
+    open var loadingDescription = "Loading...".localized
 
     open var view: UIView { return self }
     open var insets: UIEdgeInsets = UIEdgeInsets.zero
@@ -149,6 +149,17 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
             indicatorView.center = CGPoint.init(x: titleLabel.frame.origin.x - 16.0, y: h / 2.0)
             imageView.frame = CGRect.init(x: titleLabel.frame.origin.x - 28.0, y: (h - 18.0) / 2.0, width: 18.0, height: 18.0)
         }
+    }
+    
+}
+
+extension String {
+    
+    var localized: String {
+        let lang = UserDefaults.standard.string(forKey: "loggedUserLanguageCode") ?? ""
+        let path = Bundle.main.path(forResource: lang, ofType: "lproj")
+        let bundle = Bundle(path: path!)
+        return NSLocalizedString(self, tableName: nil, bundle: bundle!, value: "", comment: "")
     }
     
 }

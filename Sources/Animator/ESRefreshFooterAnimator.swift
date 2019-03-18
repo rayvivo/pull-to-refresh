@@ -27,9 +27,9 @@ import UIKit
 
 open class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
 
-    open var loadingMoreDescription: String = NSLocalizedString("Loading more", comment: "")
-    open var noMoreDataDescription: String  = NSLocalizedString("No more data", comment: "")
-    open var loadingDescription: String     = NSLocalizedString("Loading...", comment: "")
+    open var loadingMoreDescription: String = "Loading more".localized
+    open var noMoreDataDescription: String  = "No more data".localized
+    open var loadingDescription: String     = "Loading...".localized
 
     open var view: UIView { return self }
     open var duration: TimeInterval = 0.3
@@ -112,3 +112,5 @@ open class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
         indicatorView.center = CGPoint.init(x: titleLabel.frame.origin.x - 18.0, y: titleLabel.center.y)
     }
 }
+
+
